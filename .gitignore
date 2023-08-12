@@ -1,2 +1,5 @@
 /env/
-/app/website/static/adminLTE/
+/app/website/static/
+/app/website/planrcomm/__pycache__/
+/app/website/core/erp/__pycache__/
+/app/website/core/erp/migrations/__pycache__/
