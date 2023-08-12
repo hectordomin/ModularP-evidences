@@ -6,7 +6,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE','planrcomm.settings')
 
 app = Celery('celery_app')
 
-app.config_from_object('django.conf:settings', namespace='CELERY')
+app.config_from_object('celery_config', namespace='CELERY')
 
 app.conf.task_queues = (
     app.conf.task_queues + (

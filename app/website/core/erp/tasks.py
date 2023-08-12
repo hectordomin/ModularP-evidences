@@ -1,11 +1,9 @@
-from __future__ import absolute_import
-from daemon import app
-import time
 from celery import shared_task
+#from planrcomm.celery import app
+import time
 
-@shared_task
+@shared_task(queue='request_queue')
 def add(x, y):
-    # sleep 5 seconds
     time.sleep(5)
     print(f'working with {x} and {y}')
     return x + y

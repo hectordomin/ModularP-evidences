@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,7 +27,7 @@ SECRET_KEY = 'django-insecure-(h_x3cs9qjo70&q%m_dpg7)^4tc8%h@+gs%3k@j24#7k2j9^c@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["community-planner.divtic.social","www.community-planner.divtic.social"]
+ALLOWED_HOSTS = ["community-planner.divtic.social","www.community-planner.divtic.social","164.92.95.57"]
 
 
 # Application definition
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     #APLICACIONES
     'core.erp',
+    'celery'
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -137,15 +139,19 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'static/'),]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-############### CELERY CONFIGURATION ################3
-#CELERY_BROKER_URL = 'amqp://planercomm:planer@164.92.95.57/planercomm_vhost'
-#CELERY_RESULT_BACKEND = 'rpc://'
-#CELERY_DEFAULT_QUEUE = 'request_queue'
-#CELERY_IGNORE_RESULT = False
+########## CELERY CONFIG #####
+
+CELERY_BROKER_URL = 'amqp://planercomm:planer@164.92.95.57/planercomm_vhost'
+CELERY_RESULT_BACKEND = 'rpc://'
+CELERY_DEFAULT_QUEUE= 'request_queue'
+#result_default_queue = 'response_queue'
+CELERY_IGNORE_RESULT = False
+#CELERY_IMPORTS = ('tasks')

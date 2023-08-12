@@ -20,5 +20,6 @@ from core.erp.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', Home, name='welcome')
+    path('', Home, name='welcome'),
+    path('celery/', celery_test, name='celery'),
 ]
