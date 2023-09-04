@@ -1,0 +1,154 @@
+{% extends 'components/layout.html' %}
+{% block content %}
+<section>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-9">
+        <img src="https://cdn-icons-png.flaticon.com/512/2354/2354280.png" alt="Imagen" class="img-fluid mx-auto d-block" style="max-width: 200px;">
+        <h2 class="mb-4 text-center">{{ Profesor.name }}</h2>
+
+        <!--#############evaluacion del profesor-->
+        <div class="d-flex align-items-center">
+          <div class="mr-2" style="flex: 1;">
+            <div class="text-center">
+              <h5 class="description-header">Conocimiento</h5>
+              <h2>9.2</h2>
+            </div>
+          </div>
+          <div class="mr-2" style="flex: 1;">
+            <div class="text-center">
+              <h5 class="description-header">Dedicacion</h5>
+              <h2>9.2</h2>
+            </div>
+          </div>
+          <div class="mr-2" style="flex: 1;">
+            <div class="text-center">
+              <h5 class="description-header">Puntualidad</h5>
+              <h2>9.2</h2>
+            </div>
+          </div>
+          <div class="mr-2" style="flex: 1;">
+            <div class="text-center">
+              <h5 class="description-header">Facilidad</h5>
+              <h2>9.2</h2>
+            </div>
+          </div>
+        </div>
+
+        <!--########post de calificacion-->
+        <div class="card direct-chat direct-chat-primary" style="margin-top: 30px;">
+          <div class="card-header">
+            <h3 class="card-title">Evalua a tu profesor</h3>
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+            </div>
+          </div>
+          <div class="card-footer">
+            <form action="#" method="post" class="d-flex align-items-center">
+              <div class="mr-2" style="flex: 1;">
+                <div class="text-center">
+                  <h5 class="description-header">Conocimiento</h5>
+                  <select class="js-example-placeholder-single form-select text-center"
+                    style="width: 70px; margin: auto;">
+                    <option value="10">10</option>
+                    <option value="9">9</option>
+                    <option value="8">8</option>
+                    <option value="7">7</option>
+                    <option value="6">6</option>
+                    <option value="5">5</option>
+                  </select>
+                </div>
+              </div>
+              <div class="mr-2" style="flex: 1;">
+                <div class="text-center">
+                  <h5 class="description-header">Dedicacion</h5>
+                  <select class="js-example-placeholder-single form-select text-center"
+                    style="width: 70px; margin: auto;">
+                    <option value="10">10</option>
+                    <option value="9">9</option>
+                    <option value="8">8</option>
+                    <option value="7">7</option>
+                    <option value="6">6</option>
+                    <option value="5">5</option>
+                  </select>
+                </div>
+              </div>
+              <div class="mr-2" style="flex: 1;">
+                <div class="text-center">
+                  <h5 class="description-header">Puntualidad</h5>
+                  <select class="js-example-placeholder-single form-select text-center"
+                    style="width: 70px; margin: auto;">
+                    <option value="10">10</option>
+                    <option value="9">9</option>
+                    <option value="8">8</option>
+                    <option value="7">7</option>
+                    <option value="6">6</option>
+                    <option value="5">5</option>
+                  </select>
+                </div>
+              </div>
+              <div class="mr-2" style="flex: 1;">
+                <div class="text-center">
+                  <h5 class="description-header">Facilidad</h5>
+                  <select class="js-example-placeholder-single form-select text-center"
+                    style="width: 70px; margin: auto;">
+                    <option value="10">10</option>
+                    <option value="9">9</option>
+                    <option value="8">8</option>
+                    <option value="7">7</option>
+                    <option value="6">6</option>
+                    <option value="5">5</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <button type="submit" class="btn btn-info">Calificar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!--comentarios####################################################################################-->
+        <div class="card direct-chat direct-chat-primary" style="margin-top: 30px;">
+          <div class="card-header">
+            <h3 class="card-title">Comentarios de la comunidad</h3>
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="direct-chat-messages">
+              <div class="direct-chat-msg">
+                <div class="direct-chat-infos clearfix">
+                  <span class="direct-chat-name float-left">Alex Pierce</span>
+                </div>
+                <img class="direct-chat-img"
+                  src="https://www.pngall.com/wp-content/uploads/5/Profile-PNG-Free-Image.png" alt="message user image">
+                <div class="direct-chat-text">
+                  Comentario de la clase
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <form action="#" method="post">
+              <div class="input-group">
+                <input type="text" name="message" placeholder="Escribe un comentario..." class="form-control">
+                <span class="input-group-append">
+                  <button type="button" class="btn btn-primary">Enviar</button>
+                </span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+
+  

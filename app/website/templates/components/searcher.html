@@ -1,10 +1,18 @@
 {% load static %}
-<div class="mb-5 text-center">
-    <h2>Realiza una consulta</h2>
-</div>
-<div class="mb-4 d-flex align-items-center">
-    <input type="text" class="form-control mr-2" placeholder="Ingresa tu búsqueda aquí...">
-    <button class="btn btn-success" type="button">
-      <i class="bi bi-search"></i>
-    </button>
+
+<h2 class="text-center">Realiza una consulta</h2>
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <form method="post" action="{% url 'welcome' %}">
+            {% csrf_token %}
+            <div class="input-group">
+                <input type="search" class="form-control mr-2" placeholder="Ingresa tu búsqueda aquí...">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-warning">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>

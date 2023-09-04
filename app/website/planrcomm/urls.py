@@ -17,9 +17,21 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from core.erp.views import *
-
+from core.professors.views import *
+from core.users.views import *
+#SubjectList.as_view()
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', Home, name='welcome'),
-    path('celery/', celery_test, name='celery'),
+    path('inicio/', Home, name='welcome'),
+    path('horario/', celery_test, name='celery'),
+    path('materias/', SubjectList.as_view(),name='materias'),
+    path('test/', test, name='pruebas'),
+    path('profesor/<int:profesor_id>/', ProfeView.as_view(), name='biografia'),
+    path('busqueda/', search, name='busqueda'),
+    path('explorar/profesores/', ProfessorList.as_view(), name='explorar_profesores'),
+    path('login/',login, name='login'),
+    path('registro/',registro, name='registro'),
+    path('generador/', generador, name='generador'),
+    path('forgot_pwd/', forgot_pwd, name='fgtpwd'),
 ]

@@ -1,0 +1,149 @@
+{% extends 'components/layout.html' %}
+{% block content %}
+
+  {% include 'components/searcher.html' %}
+
+  <div class="row mt-3">
+    <div class="col-md-10 offset-md-1">
+      <div class="list-group">
+        <div class="list-group-item">
+          {% for pair in pairs %}
+          <div class="row justify-content-center align-items-center">
+            {% for profesor in pair %}
+            <div class="col-md-6">
+              <!-- Widget: user widget style 1 -->
+              <div class="card card-widget widget-user shadow">
+                <!-- Add the bg color to the header using any of the bg-* classes -->
+                <div class="widget-user-header bg-info text-center">
+                  <h3 class="widget-user-username">{{ profesor.name }}</h3>
+                  <div class="widget-user-desc align-items-center text-center"> 
+                    <span>
+                      <h5 >Promedio: 10.0</h5>
+                    </span>
+                    <span>
+                      <img class="img-responsive me-3" src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" alt="Imagen de ejemplo" style="max-width: 70px;">
+                    </span>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <div class="row">
+                    <div class="col-sm-3 border-right">
+                      <div class="description-block">
+                        <span>
+                          <i class="bi bi-bookmark"></i>
+                        </span>
+                        <h5 class="description-header">Conocimiento</h5>
+                        <span class="description-text">10.0</span>
+                      </div>
+                    </div>
+                    <div class="col-sm-3 border-right">
+                      <div class="description-block">
+                        <span>
+                          <i class="bi bi-patch-check"></i>
+                        </span>
+                        <h5 class="description-header">Dedicación</h5>
+                        <span class="description-text">10.0</span>
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="description-block">
+                        <span>
+                          <i class="bi bi-clock-history"></i>
+                        </span>
+                        <h5 class="description-header">Puntualidad</h5>
+                        <span class="description-text">10.0</span>
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="description-block">
+                        <span>
+                          <i class="bi bi-clipboard-pulse"></i>
+                        </span>
+                        <h5 class="description-header">Facilidad</h5>
+                        <span class="description-text">10.0</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <a href="{% url 'biografia' profesor_id=profesor.professor_id %}" class="btn btn-info btn-block">Conóceme</a>
+                  </div>
+                </div>
+              </div>
+              <!-- /.widget-user -->
+            </div>
+            {% endfor%}
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav aria-label="Page navigation" class="d-flex justify-content-center">
+    <ul class="pagination">
+      <!-- Mostrar "first" y "previous" -->
+      {% if page_obj.has_previous %}
+        <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %} d-none d-lg-block">
+          <a class="page-link {% if not page_obj.has_previous %}disabled{% endif %}" href="?page=1">
+            {% if page_obj.paginator.num_pages > 5 and page_obj.number > 3 %}
+              &laquo;&laquo;
+            {% else %}
+              &laquo; Primera
+            {% endif %}
+          </a>
+        </li>
+        <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %} d-sm-block d-lg-none">
+          <a class="page-link {% if not page_obj.has_previous %}disabled{% endif %}" href="?page=1">&lt;&lt;</a>
+        </li>
+        <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %} d-none d-lg-block">
+          <a class="page-link {% if not page_obj.has_previous %}disabled{% endif %}" href="?page={{ page_obj.previous_page_number }}">
+            &lt; Anterior
+          </a>
+        </li>
+        <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %} d-sm-block d-lg-none">
+          <a class="page-link {% if not page_obj.has_previous %}disabled{% endif %}" href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+        </li>
+      {% endif %}
+  
+      <!-- Mostrar números de página -->
+      {% for num in page_obj.paginator.page_range %}
+        {% if num == page_obj.number %}
+          <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+        {% else %}
+          {% if num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+            <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+  
+      <!-- Mostrar "next" y "last" -->
+      {% if page_obj.has_next %}
+        <li class="page-item {% if not page_obj.has_next %}disabled{% endif %} d-none d-lg-block">
+          <a class="page-link {% if not page_obj.has_next %}disabled{% endif %}" href="?page={{ page_obj.next_page_number }}">
+            Siguiente &gt;
+          </a>
+        </li>
+        <li class="page-item {% if not page_obj.has_next %}disabled{% endif %} d-sm-block d-lg-none">
+          <a class="page-link {% if not page_obj.has_next %}disabled{% endif %}" href="?page={{ page_obj.next_page_number }}">&gt;</a>
+        </li>
+        <li class="page-item {% if not page_obj.has_next %}disabled{% endif %} d-none d-lg-block">
+          <a class="page-link {% if not page_obj.has_next %}disabled{% endif %}" href="?page={{ page_obj.paginator.num_pages }}">
+            {% if page_obj.paginator.num_pages > 5 and page_obj.number < page_obj.paginator.num_pages|add:"-2" %}
+              &raquo;&raquo;
+            {% else %}
+              Último &raquo;
+            {% endif %}
+          </a>
+        </li>
+        <li class="page-item {% if not page_obj.has_next %}disabled{% endif %} d-sm-block d-lg-none">
+          <a class="page-link {% if not page_obj.has_next %}disabled{% endif %}" href="?page={{ page_obj.paginator.num_pages }}">&gt;&gt;</a>
+        </li>
+      {% endif %}
+    </ul>
+  </nav>
+  
+  
+
+{% endblock %}

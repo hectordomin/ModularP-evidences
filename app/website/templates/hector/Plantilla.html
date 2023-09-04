@@ -1,0 +1,47 @@
+{% extends 'components/layout.html' %}
+{% block content %}
+<!-- Main content -->
+<body class="text-center">
+    <div class="container py-4 py-xl-5 flex-fill">
+        <div class="mb-5 text-center">
+            <h2>Realiza una consulta</h2>
+            <p>Planificar el horario escolar nunca fue tan facil!!</p>
+        </div>
+        <div class="mb-4 d-flex align-items-center">
+            <input type="text" class="form-control mr-2" placeholder="Ingresa tu búsqueda aquí...">
+            <button class="btn btn-success" type="button">
+              <i class="bi bi-search"></i>
+            </button>
+        </div>
+        <div class="container py-4 py-xl-6 flex-fill">
+            <div class="card mb-5">
+                <h3 class="text-center">Explora y conoce nuestras funcionalidades</h3>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="text-center column-container">
+                            <h5>Ahorra tiempo con nuestro planificador inteligente</h5>
+                        </div>
+                        <ul class="btn-list column-container">
+                            <li><button class="btn btn-primary btn-sm" type="button">Generador de horario</button></li>
+                            <li><p></p></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-center column-container">
+                            <h5>Comparte tu experiencia con la comunidad</h5>
+                        </div>
+                        <ul class="btn-list column-container">
+                            <li><button class="btn btn-primary btn-sm" type="button">Búsqueda por materia</button></li>
+                            <li><button class="btn btn-primary btn-sm" type="button">Explorar profesores</button></li>
+                        </ul>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="mb-4 text-center">
+            <button class="btn btn-success btn-sm purple-btn" type="button">Horario</button>
+        </div>
+    </div>
+ </body>
+{% endblock %}

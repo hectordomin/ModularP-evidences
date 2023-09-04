@@ -1,0 +1,79 @@
+{% extends 'components/layout.html' %}
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card p-4" style="width: 300px;">
+        <h4 class="card-title text-center mb-4">Formulario</h4>
+        <form action="#" method="post">
+            <div class="mb-3">
+                <label for="ciclo" class="form-label">Ciclo</label>
+                <select class="form-select" id="ciclo" name="ciclo">
+                    <option value="23B">23B</option>
+                    <option value="23A">23A</option>
+                    <option value="21B">21B</option>
+                    <option value="21A">21A</option>
+                    <option value="19B">19B</option>
+                    <option value="19A">19A</option>
+                    <option value="17B">17B</option>
+                    <option value="17A">17A</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="carrera" class="form-label">Carrera</label>
+                <select class="form-select" id="carrera" name="carrera">
+                    <option value="INCE">INCE</option>
+                    <option value="IGFO">IGFO</option>
+                    <option value="INBI">INBI</option>
+                    <option value="INRO">INRO</option>
+                    <option value="INNI">INNI</option>
+                    <option value="INFO">INFO</option>
+                    <option value="INCO">INCO</option>
+                    <option value="ICOM">ICOM</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="materias" class="form-label">Materias</label>
+                <input type="text" class="form-control" id="materias" name="materias">
+            </div>
+            <div class="mb-3">
+                <label for="Inicio" class="form-label">Horario Inicio</label>
+                <select class="form-select" id="horas" name="horas">
+                    <option value="07:00">07:00</option>
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="19:00">19:00</option>
+                    <option value="20:00">20:00</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="Fin" class="form-label">Horario fin</label>
+                <select class="form-select" id="horas-f" name="horas-f">
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="19:00">19:00</option>
+                    <option value="20:00">20:00</option>
+                    <option value="20:00">21:00</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

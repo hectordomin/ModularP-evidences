@@ -1,0 +1,77 @@
+{% extends 'components/layout.html' %}
+{% block content %}
+<section class="py-5">
+    <div class="container col-12">
+        <div class="row">
+            <div class="col-12 col-md-9">
+                <h2 class="mb-4">NOMBRE PROFESOR</h2>
+                <h2>9.2</h2>
+                <p>
+                    okdofdoFood is my passion. Lorem ipsum dolor si commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+                
+                <select class="js-example-placeholder-single form-select mt-4 text-center" style="width: 15%;">
+                    <option value="10">10</option>
+                    <option value="9">9</option>
+                    <option value="8">8</option>
+                    <option value="7">7</option>
+                    <option value="6">6</option>
+                    <option value="5">5</option>
+                </select>               
+
+            <!-- comnetarios -->
+            <div class="card direct-chat direct-chat-primary" style="margin-top: 30px;">
+                <div class="card-header">
+                  <h3 class="card-title">Comentarios de la comunidad</h3>
+  
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                      <i class="fas fa-minus"></i>
+                    </button>
+
+                  </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <!-- Conversations are loaded here -->
+                  <div class="direct-chat-messages">
+                    <!-- Message. Default to the left -->
+                    <div class="direct-chat-msg">
+                      <div class="direct-chat-infos clearfix">
+                        <span class="direct-chat-name float-left">Alexander Pierce</span>
+                        <span class="direct-chat-timestamp float-right">23 Jan 2:00 pm</span>
+                      </div>
+                      <!-- /.direct-chat-infos -->
+                      <img class="direct-chat-img" src="https://www.pngall.com/wp-content/uploads/5/Profile-PNG-Free-Image.png" alt="message user image">
+                      <!-- /.direct-chat-img -->
+                      <div class="direct-chat-text">
+                        Is this template really for free? That's unbelievable!
+                      </div>
+                      <!-- /.direct-chat-text -->
+                    </div>
+                   
+ 
+                  </div>
+                  <!--/.direct-chat-messages-->
+  
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <form action="#" method="post">
+                    <div class="input-group">
+                      <input type="text" name="message" placeholder="Escribe un comentario..." class="form-control">
+                      <span class="input-group-append">
+                        <button type="button" class="btn btn-primary">Enviar</button>
+                      </span>
+                    </div>
+                  </form>
+                </div>
+                <!-- /.card-footer-->
+              </div>
+              <!--/.direct-chat -->
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+  

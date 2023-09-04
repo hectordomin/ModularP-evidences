@@ -1,0 +1,90 @@
+{% extends 'components/layout.html' %}
+{% block content %}
+
+{% include 'components/searcher.html' %}
+
+<div class="row mt-3">
+    <div class="col-md-10 offset-md-1">
+        {% for profesor in professors %}
+        <div class="list-group">
+            <div class="list-group-item">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-auto">
+                        <img class="img-responsive me-3" src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" alt="Imagen de ejemplo" style="max-width: 70px;">
+                    </div>
+                    <div class="col px-4">
+                        <div>
+                            <!-- <div class="float-right">2021-04-20 10:14pm</div> -->
+                            <div class="float-right"> 
+                                <button type="button" class="btn btn-secondary"> Ver</button>  
+                            </div>
+                            <h3> {{ profesor.name }} </h3>
+                            <h4> Calificación: 8.0</h4>
+
+                            <p class="mb-0">Estadísticas</p>
+                            <div class="info-box ">
+                                <span class="info-box-icon"><i class="bi bi-activity"></i></span>
+                    
+                                <div class="info-box-content">
+                                    <span class="info-box-number">Dificultad</span>
+                                    <span class="info-box-text">{{ profesor.difficult }}</span>
+                                </div>
+
+                                <span class="info-box-icon "><i class="bi bi-clock"></i></span>
+                    
+                                <div class="info-box-content">
+                                    <span class="info-box-number">Puntualidad</span>
+                                    <span class="info-box-text">{{ profesor.punctuality }}</span>
+                                </div>
+
+                                <span class="info-box-icon"><i class="bi bi-clipboard2-pulse"></i></span>
+                    
+                                <div class="info-box-content">
+                                    <span class="info-box-number">Conocimiento</span>
+                                    <span class="info-box-text"> {{ profesor.knowledge }}</span>
+                                </div>
+
+                                <span class="info-box-icon "><i class="bi bi-bookmark-star"></i></span>
+                    
+                                <div class="info-box-content">
+                                    <span class="info-box-number">Seguimiento</span>
+                                    <span class="info-box-text"> {{ profesor.following }}</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<nav aria-label="Page navigation" class="d-flex justify-content-center">
+    <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page=1">&laquo; Primera</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a></li>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if num == page_obj.number %}
+                <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+            {% else %}
+                {% if num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Siguiente</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Ultima &raquo;</a></li>
+        {% endif %}
+
+        <li class="page-item"><span class="page-link current-page">Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.</span></li>
+    </ul>
+</nav>
+
+{% endblock %}
