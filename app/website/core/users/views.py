@@ -2,11 +2,13 @@ from django.shortcuts import render, redirect
 from .forms import UserForm, StudentForm
 from django.contrib import messages
 from django.urls import reverse_lazy
+from django.contrib.auth.views import LoginView
+from .forms import LoginForm
 
-# Create your views here.
-
-def login(request):
-    return render(request, 'users/login.html')
+class MyLogin(LoginView):
+    template_name = 'users/login.html'
+    form_class = LoginForm
+    success_url = 'welcome'
 
 def registro(request):
     form = UserForm(request.POST or None)

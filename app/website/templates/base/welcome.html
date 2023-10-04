@@ -5,10 +5,9 @@
 {% block head %}
   {{block.super}} 
   <link rel="stylesheet" href="{% static 'adminLTE/plugins/fullcalendar/main.css'%}">
-  <link rel="stylesheet" href="{% static 'calendar/calendar.css'%}">
 {% endblock %}
 
-  <div class="container mt-5">
+  <div class="container mt-2">
     <div class="card">
       <div class="card-header bg-dark text-white text-center">
         <h2>Explora y conoce nuestras funcionalidades</h2>
@@ -78,9 +77,10 @@
 </div>
 
 {% block javascript %}
-  <script src="{% static 'adminLTE/plugins/moment/moment.min.js'%}"></script>
-  <script src="{% static 'adminLTE/plugins/fullcalendar/main.js'%}"></script>
-  <script src="{% static 'calendar/calendar.js' %}"></script>
+<script src="{% static 'calendar/calendar.js' %}"></script>
+<script src="{% static 'adminLTE/plugins/moment/moment.min.js'%}"></script>
+<script src="{% static 'adminLTE/plugins/fullcalendar/main.js'%}"></script>
 {% endblock %}
 
 {% endblock %}
+

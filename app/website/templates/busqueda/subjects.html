@@ -5,7 +5,7 @@
 
 <div class="row mt-3">
   <div class="col-md-10 offset-md-1">
-    <div class="list-group">
+    <div class="list-group" id="search-results">
       <div class="list-group-item">
         <div class="row justify-content-center" style="margin-top: 30px;">
             {% for item in materias %}
@@ -14,10 +14,37 @@
                     <div class="card-body">
                         <h3 class="mb-0 text-center">{{ item.name }}</h3>
                     </div>
+
                     <div class="card-footer">
-                        <a class="btn btn-app bg-secondary col-12">
-                          <i class="fas fa-users"></i> Profesores
-                        </a>
+                      
+                      <!-- BOTON -->
+                      <a class="btn btn-app bg-success col-12" data-toggle="modal" data-target="#exampleModalCenter">
+                        <i class="fas fa-users"></i> Profesores
+                      </a>
+
+                      <!-- MODAL -->
+                      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLongTitle">Completa la siguiente información</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <p> Carrera: </p>
+                              <br>
+                              <p> Calendario: </p>
+                            </div>
+                            <div class="modal-footer justify-content-center">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                              <button type="button" class="btn btn-primary">Buscar</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
                     </div>
                 </div>
             </div>
@@ -29,66 +56,74 @@
 </div>
 
 <nav aria-label="Page navigation" class="d-flex justify-content-center">
-    <ul class="pagination">
-      <!-- Mostrar "first" y "previous" -->
-      {% if page_obj.has_previous %}
-        <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %} d-none d-lg-block">
-          <a class="page-link {% if not page_obj.has_previous %}disabled{% endif %}" href="?page=1">
-            {% if page_obj.paginator.num_pages > 5 and page_obj.number > 3 %}
-              &laquo;&laquo;
-            {% else %}
-              &laquo; Primera
-            {% endif %}
-          </a>
-        </li>
-        <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %} d-sm-block d-lg-none">
-          <a class="page-link {% if not page_obj.has_previous %}disabled{% endif %}" href="?page=1">&lt;&lt;</a>
-        </li>
-        <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %} d-none d-lg-block">
-          <a class="page-link {% if not page_obj.has_previous %}disabled{% endif %}" href="?page={{ page_obj.previous_page_number }}">
-            &lt; Anterior
-          </a>
-        </li>
-        <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %} d-sm-block d-lg-none">
-          <a class="page-link {% if not page_obj.has_previous %}disabled{% endif %}" href="?page={{ page_obj.previous_page_number }}">&lt;</a>
-        </li>
-      {% endif %}
-  
-      <!-- Mostrar números de página -->
-      {% for num in page_obj.paginator.page_range %}
-        {% if num == page_obj.number %}
-          <li class="page-item active"><span class="page-link">{{ num }}</span></li>
-        {% else %}
-          {% if num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-            <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+  <ul class="pagination">
+    <!-- Mostrar "first" y "previous" -->
+    {% if page_obj.has_previous %}
+      <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %} d-none d-lg-block">
+        <a class="page-link {% if not page_obj.has_previous %}disabled{% endif %}" href="?search_query={{ search }}&page=1">
+          {% if page_obj.paginator.num_pages > 5 and page_obj.number > 3 %}
+            &laquo;&laquo;
+          {% else %}
+            &laquo; Primera
           {% endif %}
+        </a>
+      </li>
+      <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %} d-sm-block d-lg-none">
+        <a class="page-link {% if not page_obj.has_previous %}disabled{% endif %}" href="?search_query={{ search }}&page=1">&lt;&lt;</a>
+      </li>
+      <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %} d-none d-lg-block">
+        <a class="page-link {% if not page_obj.has_previous %}disabled{% endif %}" href="?search_query={{ search }}&page={{ page_obj.previous_page_number }}">
+          &lt; Anterior
+        </a>
+      </li>
+      <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %} d-sm-block d-lg-none">
+        <a class="page-link {% if not page_obj.has_previous %}disabled{% endif %}" href="?search_query={{ search }}&page={{ page_obj.previous_page_number }}">&lt;</a>
+      </li>
+    {% endif %}
+
+    <!-- Mostrar números de página -->
+    {% for num in page_obj.paginator.page_range %}
+      {% if num == page_obj.number %}
+        <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+      {% else %}
+        {% if num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+          <li class="page-item"><a class="page-link" href="?search_query={{ search }}&page={{ num }}">{{ num }}</a></li>
         {% endif %}
-      {% endfor %}
-  
-      <!-- Mostrar "next" y "last" -->
-      {% if page_obj.has_next %}
-        <li class="page-item {% if not page_obj.has_next %}disabled{% endif %} d-none d-lg-block">
-          <a class="page-link {% if not page_obj.has_next %}disabled{% endif %}" href="?page={{ page_obj.next_page_number }}">
-            Siguiente &gt;
-          </a>
-        </li>
-        <li class="page-item {% if not page_obj.has_next %}disabled{% endif %} d-sm-block d-lg-none">
-          <a class="page-link {% if not page_obj.has_next %}disabled{% endif %}" href="?page={{ page_obj.next_page_number }}">&gt;</a>
-        </li>
-        <li class="page-item {% if not page_obj.has_next %}disabled{% endif %} d-none d-lg-block">
-          <a class="page-link {% if not page_obj.has_next %}disabled{% endif %}" href="?page={{ page_obj.paginator.num_pages }}">
-            {% if page_obj.paginator.num_pages > 5 and page_obj.number < page_obj.paginator.num_pages|add:"-2" %}
-              &raquo;&raquo;
-            {% else %}
-              Último &raquo;
-            {% endif %}
-          </a>
-        </li>
-        <li class="page-item {% if not page_obj.has_next %}disabled{% endif %} d-sm-block d-lg-none">
-          <a class="page-link {% if not page_obj.has_next %}disabled{% endif %}" href="?page={{ page_obj.paginator.num_pages }}">&gt;&gt;</a>
-        </li>
       {% endif %}
-    </ul>
-  </nav>
+    {% endfor %}
+
+    <!-- Mostrar "next" y "last" -->
+    {% if page_obj.has_next %}
+      <li class="page-item {% if not page_obj.has_next %}disabled{% endif %} d-none d-lg-block">
+        <a class="page-link {% if not page_obj.has_next %}disabled{% endif %}" href="?search_query={{ search }}&page={{ page_obj.next_page_number }}">
+          Siguiente &gt;
+        </a>
+      </li>
+      <li class="page-item {% if not page_obj.has_next %}disabled{% endif %} d-sm-block d-lg-none">
+        <a class="page-link {% if not page_obj.has_next %}disabled{% endif %}" href="?search_query={{ search }}&page={{ page_obj.next_page_number }}">&gt;</a>
+      </li>
+      <li class="page-item {% if not page_obj.has_next %}disabled{% endif %} d-none d-lg-block">
+        <a class="page-link {% if not page_obj.has_next %}disabled{% endif %}" href="?search_query={{ search }}&page={{ page_obj.paginator.num_pages }}">
+          {% if page_obj.paginator.num_pages > 5 and page_obj.number < page_obj.paginator.num_pages|add:"-2" %}
+            &raquo;&raquo;
+          {% else %}
+            Último &raquo;
+          {% endif %}
+        </a>
+      </li>
+      <li class="page-item {% if not page_obj.has_next %}disabled{% endif %} d-sm-block d-lg-none">
+        <a class="page-link {% if not page_obj.has_next %}disabled{% endif %}" href="?search_query={{ search }}&page={{ page_obj.paginator.num_pages }}">&gt;&gt;</a>
+      </li>
+    {% endif %}
+  </ul>
+</nav>
 
 {% endblock %}
+
+{% block javascript %}
+  <script type="text/javascript">
+    $('#myModal').on('shown.bs.modal', function () {
+      $('#myInput').trigger('focus')
+    })
+  </script>
+{% endblock javascript %}

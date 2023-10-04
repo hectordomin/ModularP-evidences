@@ -1,4 +1,5 @@
-{% load static%}
+{% load static %}
+
 <!-- Navbar -->
 <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
   <div class="container">
@@ -17,18 +18,18 @@
         <li class="nav-item">
           <a href="{% url 'welcome' %}" class="nav-link">Inicio</a>
         </li>
-        <li class="nav-item dropdown">
-          <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Explorar</a>
-          <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-            <li><a href="{% url 'materias' %}" class="dropdown-item">Oferta por materia </a></li>
-            <li><a href="{% url 'explorar_profesores' %}" class="dropdown-item">Profesores</a></li>
-          </ul>
+        <li class="nav-item">
+          <a href="{% url 'materias' %}" class="nav-link">Oferta por materia</a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'explorar_profesores' %}" class="nav-link">Profesores</a>
         </li>
       </ul>
 
-      <!-- Right navbar links-->  
+      <!-- Right navbar links -->  
       <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto align-items-center">
         <!-- search -->
+        <!--
         <li class="nav-item">
           <a class="nav-link" data-widget="navbar-search" href="#" role="button">
             <i class="fas fa-search"></i>
@@ -36,12 +37,12 @@
           <div class="navbar-search-block">
             <form class="form-inline">
               <div class="input-group input-group-sm">
-                <input class="form-control form-control-navbar" type="search" placeholder="Busqueda" aria-label="Search">
+                <input class="form-control form-control-navbar" type="search" placeholder="Búsqueda" aria-label="Search">
                 <div class="input-group-append">
-                  <button class="btn btn-navbar" type="submit">
+                  <button class="btn btn-navbar" type="submit", title="ok">
                     <i class="fas fa-search"></i>
                   </button>
-                  <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                  <button class="btn btn-navbar" type="button" data-widget="navbar-search", title="Buscar">
                     <i class="fas fa-times"></i>
                   </button>
                 </div>
@@ -49,37 +50,20 @@
             </form>
           </div>
         </li>
-        <!--botones-->
-          {% if sesion %}
-          <li class="nav-item">
-            <button class="btn btn-danger btn-sm" type="button">Abandonar</button>
-          </li>
-          {% else %}
-          <li class="nav-item">
-            <a href="{% url 'login' %}" class="btn btn-info btn-sm">Ingresar</a>
-          </li>
-          <li class="nav-item">
-            <a href="{% url 'registro' %}" class="btn btn-secondary btn-sm" style="margin-left: 10px">Registrarse</a>
-          </li>
-          {% endif %}
-          <!-- Notifications Dropdown Menu -->
-        <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-          <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="dropdown" href="#">
-              <i class="far fa-bell"></i>
-              <span class="badge badge-warning navbar-badge">15</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-              <span class="dropdown-header">Notificaciones</span>
-              <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item">
-                <i class="fas fa-file mr-2"></i> Reportes
-              </a>
-              <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item dropdown-footer">Ver todas las notificaciones</a>
-            </div>
-          </li>
-        </ul>
+        -->
+        <!-- Botones -->
+        {% if request.user.is_authenticated %}
+        <li class="nav-item">
+          <a href="{% url 'logout' %}" class="btn btn-danger btn-sm">Cerrar sesión</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a href="{% url 'login' %}" class="btn btn-info btn-sm">Iniciar sesión</a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'registro' %}" class="btn btn-secondary btn-sm" style="margin-left: 10px">Regístrate</a>
+        </li>
+        {% endif %}
       </ul>
     </div>
   </div>

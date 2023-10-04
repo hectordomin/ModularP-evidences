@@ -24,3 +24,15 @@ class test(TestCase):
         )
         professor.save()
         print("Profesor creado exitosamente")
+
+    def default_evaluate(self):
+        profesores = Professor.objects.all()
+        default_value = 8.0
+        for registro in profesores:
+            registro.global_knowledge = default_value
+            registro.global_punctuality = default_value
+            registro.global_difficult = default_value
+            registro.global_dedication = default_value
+            registro.save()
+
+        print("\n Evaluaciones por default ingresadas en la poblacion de profesores")

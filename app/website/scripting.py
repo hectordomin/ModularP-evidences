@@ -26,7 +26,14 @@ def populate_professors():
         #print(value[0])
         professor.save()
 
-    print("\n Tabla de profesores llenada éxitosamente")
+def default_evaluate():
+    profesores = Professor.objects.all()
+    default_value = 8.0
+    for registro in profesores:
+        registro.global_knowledge = default_value
+        registro.global_punctuality = default_value
+        registro.global_difficult = default_value
+        registro.global_dedication = default_value
+        registro.save()
 
-populate_professors()
-populate_subjects()
+    print("\n Evaluaciones por default ingresadas en la poblacion de profesores")

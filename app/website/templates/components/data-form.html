@@ -1,4 +1,5 @@
 {% extends 'components/layout.html' %}
+{% load crispy_forms_tags %}
 {% load static %}
 {% block content %}
 
@@ -9,16 +10,119 @@
 
         <div class="card card-success">
             <div class="card-header">
-                <h3 class="text-center">Formulario</h3>
+                <h3 class="text-center">Todo empieza aquí... ¿Qué se adapta a ti?</h3>
             </div>
             <div class="card-body">
-                <form method="post">
+                <form method="post" >
                     {% csrf_token %}
-                    {{ form.as_p }}
-                    <button type="submit">Enviar</button>
+                    <row>
+                        <div class="col mb-4">
+                            <label for="{{ form.materias.id_for_label }}">Materias</label>
+                            <input type="text" class="form-control form-control-lg" id="{{ form.materias.id_for_label }}" name="{{ form.materias.name }}" placeholder="'I7039', 'I5888', 'I5910', [...] ">
+                        </div>
+                    </row>
+                    <row class="d-flex align-items-center">
+                        <div class="col mb-4">
+                            {{ form.ciclo|as_crispy_field }}
+                        </div>
+                        <div class="col mb-4">
+                            {{ form.carrera|as_crispy_field }}
+                        </div>
+                    </row>
+                    
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <div class="form-group">
+                                <div class="icheck-primary d-inline">
+                                    {{ form.lunes }}
+                                    <label for="{{ form.lunes.id_for_label }}">Lunes</label>
+                                </div>
+                            </div>
+                            <div>
+                                {{ form.inicioL|as_crispy_field }}
+                            </div>
+                            <div>
+                                {{ form.finL|as_crispy_field }}
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-4">
+                            <div class="form-group clearfix">
+                                <div class="icheck-primary d-inline">
+                                    {{ form.martes }}
+                                    <label for="{{ form.martes.id_for_label }}">Martes</label>
+                                </div>
+                            </div>
+                            <div>
+                                {{ form.inicioM|as_crispy_field }}
+                            </div>
+                            <div>
+                                {{ form.finM|as_crispy_field }}
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-4">
+                            <div class="form-group clearfix">
+                                <div class="icheck-primary d-inline">
+                                    {{ form.miercoles }}
+                                    <label for="{{ form.miercoles.id_for_label }}">Miercoles</label>
+                                </div>
+                            </div>
+                            <div>
+                                {{ form.inicioMi|as_crispy_field }}
+                            </div>
+                            <div>
+                                {{ form.finMi|as_crispy_field }}
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-4">
+                            <div class="form-group clearfix">
+                                <div class="icheck-primary d-inline">
+                                    {{ form.jueves }}
+                                    <label for="{{ form.jueves.id_for_label }}">Jueves</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                {{ form.inicioJ|as_crispy_field }}
+                            </div>
+                            <div>
+                                {{ form.finJ|as_crispy_field }}
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-4">
+                            <div class="form-group clearfix">
+                                <div class="icheck-primary d-inline">
+                                    {{ form.viernes }}
+                                    <label for="{{ form.viernes.id_for_label }}">Viernes</label>
+                                </div>
+                            </div>
+                            <div>
+                                {{ form.inicioV|as_crispy_field }}
+                            </div>
+                            <div>
+                                {{ form.finV|as_crispy_field }}
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-4">
+                            <div class="form-group clearfix">
+                                <div class="icheck-primary d-inline">
+                                    {{ form.sabado }}
+                                    <label for="{{ form.sabado.id_for_label }}">Sabado</label>
+                                </div>
+                            </div>
+                            <div>
+                                {{ form.inicioS|as_crispy_field }}
+                            </div>
+                            <div>
+                                {{ form.finS|as_crispy_field }}
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="margin-top:15px">Enviar</button>
                 </form>
             </div>
-
             <!-- /.card-body -->
         </div>
 
@@ -28,374 +132,17 @@
 
 {% block javascript %}
 <script src="{% static 'adminLTE/plugins/select2/js/select2.full.min.js'%}"></script>
-<script src="{% static 'adminLTE/plugins/select2/js/select2.full.min.js'%}"></script>
+<script>
+    $(function () {
+      //Initialize Select2 Elements
+      $('.select2').select2()
+  
+      //Initialize Select2 Elements
+      $('.select2bs4').select2({
+        theme: 'bootstrap4'
+      }) 
+    })
+  </script>
 {% endblock javascript %}
 
 {% endblock %}
-<!--
-                    <form action="#" method="post">
-                    <row class="d-flex align-items-center">
-                        <div class="col-md-4 mb-4">
-                            <label for="ciclo" class="form-label">Ciclo</label>
-                            <div>
-                                <select class="form-control select2 select2-danger"
-                                    data-dropdown-css-class="select2-danger" style="width: 100%;" id="ciclo"
-                                    name="ciclo">
-                                    <option value="23B">23B</option>
-                                    <option value="23A">23A</option>
-                                    <option value="21B">21B</option>
-                                    <option value="21A">21A</option>
-                                    <option value="19B">19B</option>
-                                    <option value="19A">19A</option>
-                                    <option value="17B">17B</option>
-                                    <option value="17A">17A</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-4">
-                            <label for="carrera" class="form-label">Carrera</label>
-                            <div>
-                                <select class="form-control select2 select2-danger"
-                                    data-dropdown-css-class="select2-danger" style="width: 100%;" id="carrera"
-                                    name="carrera">
-                                    <option value="INCE">INCE</option>
-                                    <option value="IGFO">IGFO</option>
-                                    <option value="INBI">INBI</option>
-                                    <option value="INRO">INRO</option>
-                                    <option value="INNI">INNI</option>
-                                    <option value="INFO">INFO</option>
-                                    <option value="INCO">INCO</option>
-                                    <option value="ICOM">ICOM</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-4">
-                            <label for="materias" class="form-label">Materias</label>
-                            <div>
-                                <input type="text" class="form-control" id="materias" name="materias">
-                            </div>
-                        </div>
-                    </row>
-                    
-                    <div class="row">
-                        <div class="col-md-4 mb-4">
-                            
-                            <div class="form-group clearfix">
-                                <div class="icheck-primary d-inline">
-                                    <input type="checkbox" id="checkboxPrimary1" checked>
-                                    <label for="checkboxPrimary1">
-                                        Lunes
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div>
-                                <label>Inicio</label>
-                                <select class="form-control select2" id="horas" name="horas" style="width: 100%;">
-                                    <option value="07:00" selected="select">07:00</option>
-                                    <option value="08:00">08:00</option>
-                                    <option value="09:00">09:00</option>
-                                    <option value="10:00">10:00</option>
-                                    <option value="11:00">11:00</option>
-                                    <option value="12:00">12:00</option>
-                                    <option value="13:00">13:00</option>
-                                    <option value="14:00">14:00</option>
-                                    <option value="15:00">15:00</option>
-                                    <option value="16:00">16:00</option>
-                                    <option value="17:00">17:00</option>
-                                    <option value="18:00">18:00</option>
-                                    <option value="19:00">19:00</option>
-                                    <option value="20:00">20:00</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label>Fin</label>
-                                <select class="form-control select2" id="horas" name="horas" style="width: 100%;">
-                                    <option value="07:00">08:00</option>
-                                    <option value="09:00">09:00</option>
-                                    <option value="10:00">10:00</option>
-                                    <option value="11:00">11:00</option>
-                                    <option value="12:00">12:00</option>
-                                    <option value="13:00">13:00</option>
-                                    <option value="14:00">14:00</option>
-                                    <option value="15:00">15:00</option>
-                                    <option value="16:00">16:00</option>
-                                    <option value="17:00">17:00</option>
-                                    <option value="18:00">18:00</option>
-                                    <option value="19:00">19:00</option>
-                                    <option value="20:00">20:00</option>
-                                    <option value="21:00" selected="select">21:00</option>
-                                </select>
-                            </div>
-
-
-                        </div>
-
-                        <div class="col-md-4 mb-4">
-                            
-                            <div class="form-group clearfix">
-                                <div class="icheck-primary d-inline">
-                                    <input type="checkbox" id="checkboxPrimary2" checked>
-                                    <label for="checkboxPrimary2">
-                                        Martes
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div>
-                                <label>Inicio</label>
-                                <select class="form-control select2" id="horas" name="horas" style="width: 100%;">
-                                    <option value="07:00" selected="select">07:00</option>
-                                    <option value="08:00">08:00</option>
-                                    <option value="09:00">09:00</option>
-                                    <option value="10:00">10:00</option>
-                                    <option value="11:00">11:00</option>
-                                    <option value="12:00">12:00</option>
-                                    <option value="13:00">13:00</option>
-                                    <option value="14:00">14:00</option>
-                                    <option value="15:00">15:00</option>
-                                    <option value="16:00">16:00</option>
-                                    <option value="17:00">17:00</option>
-                                    <option value="18:00">18:00</option>
-                                    <option value="19:00">19:00</option>
-                                    <option value="20:00">20:00</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label>Fin</label>
-                                <select class="form-control select2" id="horas" name="horas" style="width: 100%;">
-                                    <option value="07:00">08:00</option>
-                                    <option value="09:00">09:00</option>
-                                    <option value="10:00">10:00</option>
-                                    <option value="11:00">11:00</option>
-                                    <option value="12:00">12:00</option>
-                                    <option value="13:00">13:00</option>
-                                    <option value="14:00">14:00</option>
-                                    <option value="15:00">15:00</option>
-                                    <option value="16:00">16:00</option>
-                                    <option value="17:00">17:00</option>
-                                    <option value="18:00">18:00</option>
-                                    <option value="19:00">19:00</option>
-                                    <option value="20:00">20:00</option>
-                                    <option value="21:00" selected="select">21:00</option>
-                                </select>
-                            </div>
-
-
-                        </div>
-
-                        <div class="col-md-4 mb-4">
-                            
-                            <div class="form-group clearfix">
-                                <div class="icheck-primary d-inline">
-                                    <input type="checkbox" id="checkboxPrimary3" checked>
-                                    <label for="checkboxPrimary3">
-                                        Miércoles
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div>
-                                <label>Inicio</label>
-                                <select class="form-control select2" id="horas" name="horas" style="width: 100%;">
-                                    <option value="07:00" selected="select">07:00</option>
-                                    <option value="08:00">08:00</option>
-                                    <option value="09:00">09:00</option>
-                                    <option value="10:00">10:00</option>
-                                    <option value="11:00">11:00</option>
-                                    <option value="12:00">12:00</option>
-                                    <option value="13:00">13:00</option>
-                                    <option value="14:00">14:00</option>
-                                    <option value="15:00">15:00</option>
-                                    <option value="16:00">16:00</option>
-                                    <option value="17:00">17:00</option>
-                                    <option value="18:00">18:00</option>
-                                    <option value="19:00">19:00</option>
-                                    <option value="20:00">20:00</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label>Fin</label>
-                                <select class="form-control select2" id="horas" name="horas" style="width: 100%;">
-                                    <option value="07:00">08:00</option>
-                                    <option value="09:00">09:00</option>
-                                    <option value="10:00">10:00</option>
-                                    <option value="11:00">11:00</option>
-                                    <option value="12:00">12:00</option>
-                                    <option value="13:00">13:00</option>
-                                    <option value="14:00">14:00</option>
-                                    <option value="15:00">15:00</option>
-                                    <option value="16:00">16:00</option>
-                                    <option value="17:00">17:00</option>
-                                    <option value="18:00">18:00</option>
-                                    <option value="19:00">19:00</option>
-                                    <option value="20:00">20:00</option>
-                                    <option value="21:00" selected="select">21:00</option>
-                                </select>
-                            </div>
-
-
-                        </div>
-
-                        <div class="col-md-4 mb-4">
-                            
-                            <div class="form-group clearfix">
-                                <div class="icheck-primary d-inline">
-                                    <input type="checkbox" id="checkboxPrimary4" checked>
-                                    <label for="checkboxPrimary4">
-                                        Jueves
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div>
-                                <label>Inicio</label>
-                                <select class="form-control select2" id="horas" name="horas" style="width: 100%;">
-                                    <option value="07:00" selected="select">07:00</option>
-                                    <option value="08:00">08:00</option>
-                                    <option value="09:00">09:00</option>
-                                    <option value="10:00">10:00</option>
-                                    <option value="11:00">11:00</option>
-                                    <option value="12:00">12:00</option>
-                                    <option value="13:00">13:00</option>
-                                    <option value="14:00">14:00</option>
-                                    <option value="15:00">15:00</option>
-                                    <option value="16:00">16:00</option>
-                                    <option value="17:00">17:00</option>
-                                    <option value="18:00">18:00</option>
-                                    <option value="19:00">19:00</option>
-                                    <option value="20:00">20:00</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label>Fin</label>
-                                <select class="form-control select2" id="horas" name="horas" style="width: 100%;">
-                                    <option value="07:00">08:00</option>
-                                    <option value="09:00">09:00</option>
-                                    <option value="10:00">10:00</option>
-                                    <option value="11:00">11:00</option>
-                                    <option value="12:00">12:00</option>
-                                    <option value="13:00">13:00</option>
-                                    <option value="14:00">14:00</option>
-                                    <option value="15:00">15:00</option>
-                                    <option value="16:00">16:00</option>
-                                    <option value="17:00">17:00</option>
-                                    <option value="18:00">18:00</option>
-                                    <option value="19:00">19:00</option>
-                                    <option value="20:00">20:00</option>
-                                    <option value="21:00" selected="select">21:00</option>
-                                </select>
-                            </div>
-
-
-                        </div>
-
-                        <div class="col-md-4 mb-4">
-                            
-                            <div class="form-group clearfix">
-                                <div class="icheck-primary d-inline">
-                                    <input type="checkbox" id="checkboxPrimary5" checked>
-                                    <label for="checkboxPrimary5">
-                                        Viernes
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div>
-                                <label>Inicio</label>
-                                <select class="form-control select2" id="horas" name="horas" style="width: 100%;">
-                                    <option value="07:00" selected="select">07:00</option>
-                                    <option value="08:00">08:00</option>
-                                    <option value="09:00">09:00</option>
-                                    <option value="10:00">10:00</option>
-                                    <option value="11:00">11:00</option>
-                                    <option value="12:00">12:00</option>
-                                    <option value="13:00">13:00</option>
-                                    <option value="14:00">14:00</option>
-                                    <option value="15:00">15:00</option>
-                                    <option value="16:00">16:00</option>
-                                    <option value="17:00">17:00</option>
-                                    <option value="18:00">18:00</option>
-                                    <option value="19:00">19:00</option>
-                                    <option value="20:00">20:00</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label>Fin</label>
-                                <select class="form-control select2" id="horas" name="horas" style="width: 100%;">
-                                    <option value="07:00">08:00</option>
-                                    <option value="09:00">09:00</option>
-                                    <option value="10:00">10:00</option>
-                                    <option value="11:00">11:00</option>
-                                    <option value="12:00">12:00</option>
-                                    <option value="13:00">13:00</option>
-                                    <option value="14:00">14:00</option>
-                                    <option value="15:00">15:00</option>
-                                    <option value="16:00">16:00</option>
-                                    <option value="17:00">17:00</option>
-                                    <option value="18:00">18:00</option>
-                                    <option value="19:00">19:00</option>
-                                    <option value="20:00">20:00</option>
-                                    <option value="21:00" selected="select">21:00</option>
-                                </select>
-                            </div>
-
-
-                        </div>
-
-                        <div class="col-md-4 mb-4">
-                            
-                            <div class="form-group clearfix">
-                                <div class="icheck-primary d-inline">
-                                    <input type="checkbox" id="checkboxPrimary6" checked>
-                                    <label for="checkboxPrimary6">
-                                        Sábado
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div>
-                                <label>Inicio</label>
-                                <select class="form-control select2" id="horas" name="horas" style="width: 100%;">
-                                    <option value="07:00" selected="select">07:00</option>
-                                    <option value="08:00">08:00</option>
-                                    <option value="09:00">09:00</option>
-                                    <option value="10:00">10:00</option>
-                                    <option value="11:00">11:00</option>
-                                    <option value="12:00">12:00</option>
-                                    <option value="13:00">13:00</option>
-                                    <option value="14:00">14:00</option>
-                                    <option value="15:00">15:00</option>
-                                    <option value="16:00">16:00</option>
-                                    <option value="17:00">17:00</option>
-                                    <option value="18:00">18:00</option>
-                                    <option value="19:00">19:00</option>
-                                    <option value="20:00">20:00</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label>Fin</label>
-                                <select class="form-control select2" id="horas" name="horas" style="width: 100%;">
-                                    <option value="07:00">08:00</option>
-                                    <option value="09:00">09:00</option>
-                                    <option value="10:00">10:00</option>
-                                    <option value="11:00">11:00</option>
-                                    <option value="12:00">12:00</option>
-                                    <option value="13:00">13:00</option>
-                                    <option value="14:00">14:00</option>
-                                    <option value="15:00">15:00</option>
-                                    <option value="16:00">16:00</option>
-                                    <option value="17:00">17:00</option>
-                                    <option value="18:00">18:00</option>
-                                    <option value="19:00">19:00</option>
-                                    <option value="20:00">20:00</option>
-                                    <option value="21:00" selected="select">21:00</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div>
-                            <button type="submit" class="btn btn-primary" style="margin-top:15px">Enviar</button>
-                        </div>
-                </form>
--->

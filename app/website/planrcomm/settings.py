@@ -160,3 +160,10 @@ CELERY_DEFAULT_QUEUE= 'request_queue'
 #result_default_queue = 'response_queue'
 CELERY_IGNORE_RESULT = False
 #CELERY_IMPORTS = ('tasks')
+
+
+#SESSION 
+AUTH_USER_MODEL = 'users.User'
+LOGIN_REDIRECT_URL = 'welcome'
+SESSION_COOKIE_AGE = 900
+SESSION_SAVE_EVERY_REQUEST = True
