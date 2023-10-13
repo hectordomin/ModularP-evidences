@@ -17,15 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from core.erp.views import *    
-from core.professors.views import *
-from core.users.views import *
 from django.contrib.auth import views as auth_views
 
-#SubjectList.as_view()
 urlpatterns = [
-    # TEMPORAL
-    #path('model-materias/',popMateria, name='model-m'),
-    path('test/', test, name='pruebas'),
 
     # INICIO
     path('admin/', admin.site.urls),
@@ -37,8 +31,7 @@ urlpatterns = [
 
     # OTROS
     path('horario/', celery_test, name='celery'),
-    path('profesor/<int:pk>/', ProfeView.as_view(), name='biografia'),
-    path('explorar/profesores/', ProfessorList.as_view(), name='explorar_profesores'),
+
 
     #IA GENERATOR
     path('generador/', generador, name='generador'),
@@ -48,5 +41,5 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name="users/login.html"), name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='welcome'), name='logout'),
     path('forgot_pwd/', forgot_pwd, name='fgtpwd'),
-    path('registro/',registro, name='registro'),
+    path('registro/', registro, name='registro'),
 ]

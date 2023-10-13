@@ -10,26 +10,26 @@
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <div class="content-header">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            {% if request.user.is_authenticated and welcome%}
-                            <h1 class="m-0"> Bienvenido<small>,&nbsp;{{ request.user.first_name }} {{ request.user.last_name }}</small></h1>
-                            {% else %}
-                            <h1 class="m-0"> {{ title }} <small> {{ subtitle}} </small></h1>
-                            {% endif %}
-                        </div><!-- /.col -->
-                        <!-- MANEJAR CON CONTEXTO
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                                <li class="breadcrumb-item"><a href="#">Diying Gasp</a></li>   
-                                <li class="breadcrumb-item active">Proceso</li>
-                                
-                            </ol>
-                        </div><!/.col -->
-                    </div><!-- /.row -->
-                </div><!-- /.container-fluid -->
+                
+                <div class="row mt-3">
+                    <div class="col-md-10 offset-md-1">
+                        {% if request.user.is_authenticated and welcome%}
+                        <h1 class="m-0"> Bienvenido<small>,&nbsp;{{ request.user.first_name }} {{ request.user.last_name }}</small></h1>
+                        {% else %}
+                        <h1 class="m-0"> {{ title }} <small> {{ subtitle}} </small></h1>
+                        {% endif %}
+                    </div><!-- /.col -->
+                    <!-- MANEJAR CON CONTEXTO
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                            <li class="breadcrumb-item"><a href="#">Diying Gasp</a></li>   
+                            <li class="breadcrumb-item active">Proceso</li>
+                            
+                        </ol>
+                    </div><!/.col -->
+                </div><!-- /.row -->
+                
             </div>
             <!-- /.content-header -->
             <div class="content"></div>

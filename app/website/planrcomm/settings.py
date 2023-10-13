@@ -44,9 +44,7 @@ INSTALLED_APPS = [
     "crispy_bootstrap4",
     'celery',
     #APLICACIONES
-    'core.erp',
-    'core.professors',
-    'core.users'
+    'core.erp'
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
@@ -163,7 +161,7 @@ CELERY_IGNORE_RESULT = False
 
 
 #SESSION 
-AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = 'erp.User'
 LOGIN_REDIRECT_URL = 'welcome'
 SESSION_COOKIE_AGE = 900
 SESSION_SAVE_EVERY_REQUEST = True

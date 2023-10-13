@@ -1,0 +1,72 @@
+{% extends 'components/layout.html' %}
+{% load static %}
+{% block content %}
+
+{% block head %}
+  {{block.super}} 
+  <link rel="stylesheet" href="{% static 'adminLTE/plugins/fullcalendar/main.css'%}">
+{% endblock %}
+
+<div class="row mt-3">
+  <div class="col-md-10 offset-md-1">
+    <div class="card">
+      <div class="card-header bg-dark text-white text-center">
+        <h2>Explora y conoce nuestras funcionalidades</h2>
+      </div>
+      <div class="card-body">
+        <div class="row justify-content-between text-center">
+          <div class="col-sm-6">
+            <!-- small card -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>Horario</h3>
+                <p>Ahorra tiempo con IA</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-calendar"></i>
+              </div>
+              <a href="{% url 'generador' %}" class="small-box-footer">
+                Ir <i class="fas fa-arrow-circle-right"></i>
+              </a>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <!-- small card -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>Catálogo</h3>
+                <p>Explora y comparte con la comunidad</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-book"></i>
+              </div>
+              <a href="{% url 'materias' %}" class="small-box-footer">
+                Ir <i class="fas fa-arrow-circle-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>    
+
+<div class="container mt-3">
+  <div class="card">
+    <div class="card-header text-center bg-success text-white">
+      <h3>Encuentra tu horario ideal</h3>
+    </div>
+    <div class="card-body">
+      <div id="scheduler" data-weekly-events="{{ weeklyEvents }}"></div>
+    </div>
+  </div>
+</div>
+
+{% block javascript %}
+<script src="{% static 'calendar/controller.js' %}"></script>
+<script src="{% static 'adminLTE/plugins/moment/moment.min.js'%}"></script>
+<script src="{% static 'adminLTE/plugins/fullcalendar/main.js'%}"></script>
+{% endblock %}
+
+{% endblock %}
+

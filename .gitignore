@@ -1,9 +1,10 @@
 /env/
-/app/website/static/
+/app/website/static/adminLTE/
 /app/website/planrcomm/__pycache__/
 /app/website/core/erp/__pycache__/
-/app/website/core/erp/migrations/__pycache__/
-/app/website/core/users/__pycache__/
-/app/website/core/users/migrations/__pycache__/
-/app/website/core/professors/__pycache__/
-/app/website/core/professors/migrations/__pycache__/
+/app/website/core/erp/migrations/__pycache__
+/app/website/core/erp/utils/evaluation/__pycache__
+/app/website/core/erp/utils/general/__pycache__
+/app/website/core/erp/utils/schedule/__pycache__
+/app/website/core/erp/utils/subject/__pycache__
+/app/website/core/erp/utils/user/__pycache__
