@@ -28,3 +28,6 @@ def registro(request):
 
 def forgot_pwd(request):
     return render(request, 'users/fgtpwd.html')
+
+def disclaimer(request):
+    return render(request, 'users/disclaimer.html')

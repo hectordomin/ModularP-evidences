@@ -129,19 +129,25 @@
     </div>
 </div>
 
-
 {% block javascript %}
 <script src="{% static 'adminLTE/plugins/select2/js/select2.full.min.js'%}"></script>
 <script>
-    $(function () {
-      //Initialize Select2 Elements
-      $('.select2').select2()
+    function adjustSelect2Width() {
+      $('.select2').each(function () {
+        // Establece el ancho al 100% del contenedor
+        $(this).next('.select2-container').css('width', '100%');
+      });
+    }
   
-      //Initialize Select2 Elements
-      $('.select2bs4').select2({
-        theme: 'bootstrap4'
-      }) 
-    })
+    // Llama a la función de ajuste de tamaño cuando la ventana cambie de tamaño
+    $(window).on('resize', adjustSelect2Width);
+    $(function () {
+      // Inicializa los elementos Select2
+      $('.select2').select2();
+  
+      // Llama a la función de ajuste de tamaño después de la inicialización
+      adjustSelect2Width();
+    });
   </script>
 {% endblock javascript %}
 

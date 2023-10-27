@@ -5,7 +5,7 @@
 {% block head %}
   {{block.super}} 
   <link rel="stylesheet" href="{% static 'adminLTE/plugins/fullcalendar/main.css'%}">
-  <link rel="stylesheet" href="{% static 'calendar/calendar.css'%}">
+
 {% endblock %}
 
   <div class="container mt-5">
@@ -14,7 +14,7 @@
             <h3>Encuentra tu horario ideal</h3>
         </div>
         <div class="card-body">
-          <div id="calendar" data-weekly-events="{{ weeklyEvents }}"></div>
+          <div id="scheduler" data-weekly-events="{{ weeklyEvents }}"></div>
         </div>
     </div>
   </div>
@@ -22,7 +22,7 @@
 {% block javascript %}
   <script src="{% static 'adminLTE/plugins/moment/moment.min.js'%}"></script>
   <script src="{% static 'adminLTE/plugins/fullcalendar/main.js'%}"></script>
-  <script src="{% static 'calendar/calendar.js' %}"></script>
+  <script src="{% static 'calendar/controller.js' %}"></script>
 {% endblock %}
 
 {% endblock %}

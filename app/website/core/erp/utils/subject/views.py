@@ -1,12 +1,6 @@
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView
 from .model import Subject
-from django.shortcuts import render, redirect
-
-
-class SubjectDetail(DetailView):
-    model = Subject
-    template_name = 'busqueda/subjects.html'
-    context_object_name = 'materias'
+from django.shortcuts import render
 
     
 class SubjectList(ListView):

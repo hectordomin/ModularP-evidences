@@ -25,12 +25,14 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', Home, name='welcome'),
     path('inicio/', Home, name='welcome'),
+    path('disclaimer/', disclaimer, name='disclaimer'),
 
     #MATERIAS
-    path('materias/', SubjectList.as_view(),name='materias'),
+    path('catalogo/', SubjectList.as_view(),name='materias'),
+    path('catalogo/<int:pk>/<str:name>/', SubjectDetail.as_view() ,name='evaluacion'),
 
     # OTROS
-    path('horario/', celery_test, name='celery'),
+    path('horario/', celery_worker, name='celery'),
 
 
     #IA GENERATOR

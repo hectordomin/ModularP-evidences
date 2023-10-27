@@ -143,27 +143,31 @@ def celery_worker(request, parameters):
         "#15AF5F", "#27AE60", "#797D7F", "#5B4636", "#5CC2B0", "#C8A2C8",
         "#5CA5C2" , "#2F4F4F", "#D8A27F", "#1AB0D0", "#C2BC6B", "#006400",
         "#2E8B57", "#91DF8F"
-    ]    
-    for materia in subjects:
-        event = { 'title': str,
-            'daysOfWeek': [], #(0 para Domingo, 1 para Lunes, etc.)
-            'startTime': str,
-            'endTime': str,
-            'color': str,}
-        event['title'] = str(f"{materia['topic']} - {materia['nrc']}")
-        days, hours = extract_days_and_hours(materia["horas"])
-        event['daysOfWeek'] = days
-        event['startTime'] = hours[0]
-        event['endTime'] = hours[1]
-        event['color'] = choose_color(css_colors, colors)
-        weekly_events.append(event)
-    
-    weekly_events = json.dumps(weekly_events)
-    context = {'sesion':True, 'weeklyEvents':weekly_events, 'title':'Community Planner'}
-    # context = {
-    #     'title':'Recepcion de datos IA',
-    #     'subtitle': subjects
-    # }
+    ]
+    if subjects:    
+        for materia in subjects:
+            event = { 'title': str,
+                'daysOfWeek': [], #(0 para Domingo, 1 para Lunes, etc.)
+                'startTime': str,
+                'endTime': str,
+                'color': str,}
+            event['title'] = str(f"{materia['topic']} - {materia['nrc']}")
+            days, hours = extract_days_and_hours(materia["horas"])
+            event['daysOfWeek'] = days
+            event['startTime'] = hours[0]
+            event['endTime'] = hours[1]
+            event['color'] = choose_color(css_colors, colors)
+            weekly_events.append(event)
+
+        weekly_events = json.dumps(weekly_events)
+        context = {'sesion':True, 'weeklyEvents':weekly_events, 'title':'Community Planner'}
+        # context = {
+        #     'title':'Recepcion de datos IA',
+        #     'subtitle': subjects
+        # }
+    else:
+       message = "No hay un horario disponible :()"
+       context = {'sesion': True, 'weeklyEvents': message} 
     return render(request, 'test/celery.html', context)
 
 
