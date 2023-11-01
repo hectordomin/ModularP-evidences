@@ -184,6 +184,7 @@ class ScheduleForm(forms.Form):
         ('198210', '198210 - Calendario 82 A'),
         ('198010', '198010 - Calendario 80 A'),
     )
+    
     opciones_inicio = [(hora, f'{hora:02}:00') for hora in range(7, 21)]
     opciones_fin = [(hora, f'{hora:02}:00') for hora in range(8, 22)]
 
@@ -218,17 +219,3 @@ class ScheduleForm(forms.Form):
     def save(self):
         Schedule = super().save(commit=False)
         return Schedule
-
-
-class EvaluationForm(forms.ModelForm):
-    class Meta:
-        model = Evaluation
-        fields = []
-
-class CommentForm(forms.ModelForm):
-    class Meta:
-        model = Evaluation
-        fields = ['comment']
-        widgets = {
-            'comment': forms.Textarea(attrs={'rows': 2, 'cols': 95}),
-        }

@@ -1,23 +1,22 @@
-
 {% extends 'components/layout.html' %}
-{% load static %}
 {% load crispy_forms_tags %}
+{% load static %}
 {% block content %}
-<section>
+
   <div class="row mt-3">
     <div class="col-md-10 offset-md-1">
       
           <img src="{% static 'img/book.png' %}" alt="Imagen" class="img-fluid mx-auto d-block" style="width: 90px; height: 90px;">
           <br>
-          <h2 class="mb-4 text-center">SEMINARIO DE SOLUCION DE PROBLEMAS DE REDES DE COMPUTADORAS Y PROTOCOLOS DE COMUNICACION</h2>
+          <h2 class="mb-4 text-center">{{materia}}</h2>
 
           <!-- Subject -->
           <ul class="list-group mb-4">
             <li class="list-group-item">
-              <b>Evaluaciones</b> <a class="float-right">0</a>
+              <b>Evaluaciones</b> <a class="float-right">{{materia.count}}</a>
             </li>
             <li class="list-group-item">
-              <b>Percepción de complejidad</b> <a class="float-right">N/A</a>
+              <b>Percepción de complejidad</b> <a class="float-right">{{materia.avg}}</a>
             </li>
           </ul>
 
@@ -44,7 +43,7 @@
               </div>
 
               <!-- Modal for subjects -->
-              <div class="modal fade" id="subjectModal" tabindex="-1" role="dialog" aria-labelledby="subjectModalLabel" aria-hidden="true">
+              <div class="modal fade" id="subjectModal" role="dialog" aria-labelledby="subjectModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -53,29 +52,25 @@
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
-                    <div class="modal-body text-center">
-                      <div class="form-group">
-                        <label>¿Qué tan compleja es la materia?</label>
-                        <select class="form-control select2 select2-secondary" data-dropdown-css-class="select2-secondary" style="width: 100%;">
-                          <option selected="selected">Muy Accesible (10)</option>
-                          <option>Manejable (9)</option>
-                          <option>Moderadamente Demandante (8)</option>
-                          <option>Exigente (7)</option>
-                          <option>Muy Desafiante (6)</option>
-                        </select>
+                    <form method="post">
+                      {% csrf_token %}
+                      <div class="modal-body text-center">
+                        <div class="form-group">
+                          <label>¿Qué tan compleja es la materia?</label>
+                          {{rate_form.complexity}}
+                        </div>
                       </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-danger" >Eliminar</button>
-                      <button type="button" class="btn btn-primary"> Editar</button>
-                      <button type="button" class="btn btn-success"> Guardar</button>
-                    </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" >Eliminar</button>
+                        <button type="submit" name="submit_rate" class="btn btn-success"> Guardar</button>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>
 
               <!-- Modal for courses -->
-              <div class="modal fade" id="courseModal" tabindex="-1" role="dialog" aria-labelledby="courseModalLabel" aria-hidden="true">
+              <div class="modal fade" id="courseModal" role="dialog" aria-labelledby="courseModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -84,72 +79,53 @@
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
-                    <div class="modal-body text-center">
-                      <!-- Profesor -->
-                      <div class="row mt-3">
-                        <div class="col-sm-3">
-                          <label>¿Quién fue tu profesor?</label>
-                        </div>
-                        <div class="col">
-                          <select class="form-control select2 select2-secondary" data-dropdown-css-class="select2-secondary" style="width: 100%;">
-                            <option selected="selected">Profesor A</option>
-                            <option>Profesor B</option>
-                            <option>Profesor C</option>
-                            <option>...</option>
-                          </select>
-                        </div>
+                    <form method="post">
+                      {% csrf_token %}
+                      <div class="modal-body text-center">
+
+                          <!-- Profesor -->
+                          <div class="row mt-3">
+                            <div class="col-sm-3">
+                              <label>¿Quién fue tu profesor?</label>
+                            </div>
+                            <div class="col">
+                              {{ experience_form.professor }}
+                            </div>
+                          </div>
+                          <!-- Dificultad -->
+                          <div class="row mt-3">
+                            <div class="col-sm-3" valign="middle">
+                              <p>¿Qué tan difícil te pareció el curso?</p>
+                            </div>
+                            <div class="col">
+                              {{ experience_form.difficult }}
+                            </div>
+                          </div>
+                          <!-- Puntualidad -->
+                          <div class="row mt-3">
+                            <div class="col-sm-3" valign="middle">
+                              <p>Puntualidad de la sesion</p>
+                            </div>
+                            <div class="col">
+                              {{ experience_form.punctuality }}
+                            </div>
+                          </div>
+                          <!-- Aprendizaje -->
+                          <div class="row mt-3">
+                            <div class="col-sm-3" valign="middle">
+                              <p>Sensación de tu aprendizaje</p>
+                            </div>
+                            <div class="col">
+                              {{ experience_form.learning }}
+                            </div>
+                          </div>
+
                       </div>
-                      <!-- Dificultad -->
-                      <div class="row mt-3">
-                        <div class="col-sm-3" valign="middle">
-                          <p>¿Qué tan difícil te pareció el curso?</p>
-                        </div>
-                        <div class="col">
-                          <select class="form-control select2 select2-secondary" data-dropdown-css-class="select2-secondary" style="width: 100%;">
-                            <option>Altamente Desafiante (6)</option>
-                            <option>Exigente (7)</option>
-                            <option selected="selected">Moderado (8):</option>
-                            <option>Manejable (9):</option>
-                            <option>Muy Asequible (10)</option>
-                          </select>
-                        </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-danger">Eliminar</button>
+                        <button type="submit" name="submit_experience" class="btn btn-success"> Guardar </button>
                       </div>
-                      <!-- Puntualidad -->
-                      <div class="row">
-                        <div class="col-sm-3" valign="middle">
-                          <p>Puntualidad de la sesion</p>
-                        </div>
-                        <div class="col">
-                          <select class="form-control select2 select2-secondary" data-dropdown-css-class="select2-secondary" style="width: 100%;">
-                            <option>Insatisfactorio (6)</option>
-                            <option>Regular (7)</option>
-                            <option selected="selected">Aceptable (8)</option>
-                            <option>Muy Bien (9)</option>
-                            <option>Excelente (10)</option>
-                          </select>
-                        </div>
-                      </div>
-                      <!-- Aprendizaje -->
-                      <div class="row mt-3">
-                        <div class="col-sm-3" valign="middle">
-                          <p>Sensación de tu aprendizaje</p>
-                        </div>
-                        <div class="col">
-                          <select class="form-control select2 select2-secondary" data-dropdown-css-class="select2-secondary" style="width: 100%;">
-                            <option>Poco Enriquecedor (6)</option>
-                            <option>Mejorable (7)</option>
-                            <option selected="selected">Aceptable (8)</option>
-                            <option>Positiva (9)</option>
-                            <option>Muy enriquecedor (10)</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-danger">Eliminar</button>
-                      <button type="button" class="btn btn-primary"> Editar</button>
-                      <button type="button" class="btn btn-success"> Guardar </button>
-                    </div>
+                    </form>
                   </div>
                 </div>
               </div>
@@ -178,14 +154,13 @@
               <div class="direct-chat-messages">
                 {% if evaluacion %}
                   {% for e in evaluacion %}
-                    {% if e.user_id.id == request.user.id %}
+                    {% if e.user.id == request.user.id %}
                     <!-- Tu mensaje (simulando ser tú) -->
                     <div class="direct-chat-msg right">
                       <div class="direct-chat-infos clearfix">
                         <span class="direct-chat-name float-right">Yo</span>
                       </div>
-                      <img class="direct-chat-img"
-                          src="https://www.pngall.com/wp-content/uploads/5/Profile-PNG-Free-Image.png" alt="message user image">
+                      <img class="direct-chat-img" src="{% static 'img/user.png' %}" alt="message user image">
                       <div class="direct-chat-text">
                         {{ e.comment }}
                       </div>
@@ -195,8 +170,7 @@
                       <div class="direct-chat-infos clearfix">
                           <span class="direct-chat-name float-left"> Estudiante verificado </span>
                       </div>
-                      <img class="direct-chat-img"
-                          src="https://www.pngall.com/wp-content/uploads/5/Profile-PNG-Free-Image.png" alt="message user image">
+                      <img class="direct-chat-img" src="{% static 'img/user.png' %}" alt="message user image">
                       <div class="direct-chat-text">
                           {{ e.comment }}
                       </div>
@@ -217,9 +191,9 @@
               <form method="post" class="mt-3">
                 {% csrf_token %}
                 <div class="input-group">
-                  <input type="text" name="message" placeholder="Type Message ..." class="form-control">
+                  {{comment_form.comment}}
                   <div class="input-group-append">
-                    <button type="submit" name="comment" class="btn btn-primary">Enviar</button>
+                    <button type="submit" name="submit_comment" class="btn btn-primary">Enviar</button>
                   </div>
                 </div>
               </form>
@@ -230,11 +204,47 @@
       
     </div>
   </div>
-</section>
-{% endblock %}
+
 
 {% block javascript %}
-  <script src="{% static 'adminLTE/plugins/select2/js/select2.full.min.js'%}"></script>
+<script src="{% static 'adminLTE/plugins/select2/js/select2.full.min.js'%}"></script>
+<!-- Modals -->
+  <script>
+    $('#subjectField').on('shown.bs.modal', function () {
+      $('#subjectModal').trigger('focus')
+    })
+    $('#courseField').on('shown.bs.modal', function () {
+      $('#courseModal').trigger('focus')
+    })
+  </script>
+  <!-- Listener -->
+  <script>
+    $(document).ready(function () {
+      // Agrega un evento change al select del profesor
+      $("#profesorSelect").change(function () {
+        // Obtiene el valor seleccionado
+        var selectedValue = $(this).val();
+  
+        // Obtén los select de dificultad, puntualidad y aprendizaje
+        var dificultadSelect = $("#dificultadSelect");
+        var puntualidadSelect = $("#puntualidadSelect");
+        var aprendizajeSelect = $("#aprendizajeSelect");
+  
+        if (selectedValue === "...") {
+          // Si se selecciona "..." en el profesor, deshabilita los otros campos
+          dificultadSelect.prop("disabled", true);
+          puntualidadSelect.prop("disabled", true);
+          aprendizajeSelect.prop("disabled", true);
+        } else {
+          // Habilita los otros campos si se selecciona un profesor válido
+          dificultadSelect.prop("disabled", false);
+          puntualidadSelect.prop("disabled", false);
+          aprendizajeSelect.prop("disabled", false);
+        }
+      });
+    });
+  </script>
+  <!-- Initilize boxes -->
   <script>
     function adjustSelect2Width() {
       $('.select2').each(function () {
@@ -253,14 +263,8 @@
       adjustSelect2Width();
     });
   </script>
-  <script>
-    $('#subjectField').on('shown.bs.modal', function () {
-      $('#subjectModal').trigger('focus')
-    })
-    $('#courseField').on('shown.bs.modal', function () {
-      $('#courseModal').trigger('focus')
-    })
-  </script>
 {% endblock javascript %}
+
+{% endblock %}
 
   

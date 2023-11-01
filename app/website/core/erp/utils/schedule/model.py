@@ -15,4 +15,4 @@ class Schedule(models.Model):
     class Meta:
         verbose_name = "horario"
         verbose_name_plural = "horarios"
-        db_table = "Schedule"
+        db_table = "schedule"

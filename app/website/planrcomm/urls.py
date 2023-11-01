@@ -29,7 +29,7 @@ urlpatterns = [
 
     #MATERIAS
     path('catalogo/', SubjectList.as_view(),name='materias'),
-    path('catalogo/<int:pk>/<str:name>/', SubjectDetail.as_view() ,name='evaluacion'),
+    path('catalogo/<int:pk>/', SubjectDetail.as_view() ,name='evaluacion'),
 
     # OTROS
     path('horario/', celery_worker, name='celery'),
